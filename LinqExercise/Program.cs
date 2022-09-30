@@ -6,38 +6,46 @@ using System.Linq;
 namespace LinqExercise
 {
     class Program
-    {      
+    {
         private static int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
         static void Main(string[] args)
-        {// work below
-         // numbers.Sum().ToString => Console.WriteLine(numbers.Sum);
-
-            numbers.Sum();
+        {
             Console.WriteLine(numbers.Sum());
-            //numbers.ForEach(numbers => Console.WriteLine(numbers));  is foreach not usable for this first one? dont see a need for it.
-                                
-           // numbers.Average();
+            //is foreach not usable for the first 2? I dont see a need for it.
+            Console.WriteLine("Press Enter after viewing result to move to the next result.");
+            Console.ReadLine();
+
             Console.WriteLine(numbers.Average());
+            Console.ReadLine();
 
-            //numbers.OrderBy(x => x);
-            //numbers.OrderByDescending(x => x);
+            numbers.OrderBy(x => x).ToList().ForEach(numbers => Console.WriteLine(numbers));
+            Console.ReadLine();
 
+            numbers.OrderByDescending(x => x).ToList().ForEach(numbers => Console.WriteLine(numbers));
+            Console.ReadLine();
 
-            //reference
-       //vGList.OrderBy(vGList => vGList.Length)
-       //.ToList()
-       //.ForEach(vGList => Console.WriteLine(vGList));
+            numbers.Where(x => x > 0).ToList().ForEach(numbers => Console.WriteLine(numbers));
+            Console.ReadLine();
 
+            numbers.Where(x => x > 5).OrderByDescending(x => x)
+                                     .ToList().ForEach(numbers => Console
+                                     .WriteLine(numbers));
+            // is this what they meant with for each only?
+            Console.ReadLine();
 
-
-
-
-
+            numbers.SetValue(37, 4);                                            
+            numbers.OrderByDescending(x => x)
+                   .ToList().ForEach(numbers => Console
+                   .WriteLine(numbers));
+            //is this ok for solution? got a void error when just adding dot?
+            Console.ReadLine();          
 
             // List of employees ****Do not remove this****
             var employees = CreateEmployees();
 
-          
+
+
+
 
             Console.WriteLine();
 
