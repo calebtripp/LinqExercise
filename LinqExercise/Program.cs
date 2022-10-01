@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace LinqExercise
 {
@@ -10,8 +11,7 @@ namespace LinqExercise
         private static int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
         static void Main(string[] args)
         {
-            Console.WriteLine(numbers.Sum());
-            //is foreach not usable for the first 2? I dont see a need for it.
+            Console.WriteLine(numbers.Sum());          
             Console.WriteLine("Press Enter after viewing result to move to the next result.");
             Console.ReadLine();
 
@@ -24,32 +24,52 @@ namespace LinqExercise
             numbers.OrderByDescending(x => x).ToList().ForEach(numbers => Console.WriteLine(numbers));
             Console.ReadLine();
 
-            numbers.Where(x => x > 0).ToList().ForEach(numbers => Console.WriteLine(numbers));
+            numbers.Where(x => x > 6).ToList().ForEach(numbers => Console.WriteLine(numbers));
             Console.ReadLine();
 
             numbers.Where(x => x > 5).OrderByDescending(x => x)
-                                     .ToList().ForEach(numbers => Console
+                                     .ToList()
+                                     .ForEach(numbers => Console
                                      .WriteLine(numbers));
-            // is this what they meant with for each only?
-            Console.ReadLine();
+                                      Console.ReadLine();
 
-            numbers.SetValue(37, 4);                                            
+            numbers.SetValue(37, 4);                 
             numbers.OrderByDescending(x => x)
                    .ToList().ForEach(numbers => Console
                    .WriteLine(numbers));
-            //is this ok for solution? got a void error when just adding dot?
-            Console.ReadLine();          
-
-            // List of employees ****Do not remove this****
+            Console.ReadLine();                
+                                       
             var employees = CreateEmployees();
-
-
-
-
-
-            Console.WriteLine();
-
+            //
+            employees.Where(x => x.FirstName                   
+                     .StartsWith('C') || x.FirstName
+                     .StartsWith('S'))
+                     .OrderBy(x => x.FirstName)
+                     .ToList().ForEach(x => Console
+                     .WriteLine(x.FullName));
             Console.ReadLine();
+
+            employees.Where(x => x.Age > 26)
+                     .OrderBy(x => x.Age)
+                     .ThenBy(x => x.FirstName)
+                     .ToList()
+                     .ForEach(x => Console
+                     .WriteLine(x.FullName));
+            Console.ReadLine();
+
+
+            //combine these??
+            Console.WriteLine(employees.Where(x => x.YearsOfExperience <= 10 && x.Age > 35).Sum(x => x.YearsOfExperience)); //20
+            Console.WriteLine(employees.Where(x => x.YearsOfExperience <= 10 && x.Age > 35).Average(x => x.YearsOfExperience)); //6.6
+            Console.ReadLine();
+
+            //var average YOE  = employees.Where(x => x.YearsOfExperience <= 10
+            //)
+
+            var employeeList = employees.Append(new Employee("Denise", "Shines", 34, 2)).ToList();
+
+            Console.WriteLine(employeeList);
+            
         }
 
         #region CreateEmployeesMethod
@@ -72,3 +92,5 @@ namespace LinqExercise
         #endregion
     }
 }
+
+
