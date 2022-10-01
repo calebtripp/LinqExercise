@@ -40,7 +40,7 @@ namespace LinqExercise
             Console.ReadLine();                
                                        
             var employees = CreateEmployees();
-            //
+            
             employees.Where(x => x.FirstName                   
                      .StartsWith('C') || x.FirstName
                      .StartsWith('S'))
@@ -56,20 +56,13 @@ namespace LinqExercise
                      .ForEach(x => Console
                      .WriteLine(x.FullName));
             Console.ReadLine();
-
-
-            //combine these??
-            Console.WriteLine(employees.Where(x => x.YearsOfExperience <= 10 && x.Age > 35).Sum(x => x.YearsOfExperience)); //20
-            Console.WriteLine(employees.Where(x => x.YearsOfExperience <= 10 && x.Age > 35).Average(x => x.YearsOfExperience)); //6.6
+                       
+            Console.WriteLine(employees.Where(x => x.YearsOfExperience <= 10 && x.Age > 35).Sum(x => x.YearsOfExperience)); 
+            Console.WriteLine(employees.Where(x => x.YearsOfExperience <= 10 && x.Age > 35).Average(x => x.YearsOfExperience)); 
             Console.ReadLine();
-
-            //var average YOE  = employees.Where(x => x.YearsOfExperience <= 10
-            //)
-
+                       
             var employeeList = employees.Append(new Employee("Denise", "Shines", 34, 2)).ToList();
-
-            Console.WriteLine(employeeList);
-            
+            Console.WriteLine(employeeList);            
         }
 
         #region CreateEmployeesMethod
@@ -86,7 +79,6 @@ namespace LinqExercise
             employees.Add(new Employee("Solid", "Snake", 18, 3));
             employees.Add(new Employee("Chris", "Redfield", 44, 7));
             employees.Add(new Employee("Faye", "Valentine", 32, 10));
-
             return employees;
         }
         #endregion
