@@ -60,9 +60,9 @@ namespace LinqExercise
             Console.WriteLine(employees.Where(x => x.YearsOfExperience <= 10 && x.Age > 35).Sum(x => x.YearsOfExperience)); 
             Console.WriteLine(employees.Where(x => x.YearsOfExperience <= 10 && x.Age > 35).Average(x => x.YearsOfExperience)); 
             Console.ReadLine();
-                       
-            var employeeList = employees.Append(new Employee("Denise", "Shines", 34, 2)).ToList();
-            Console.WriteLine(employeeList);            
+
+            employees = employees.Append(new Employee("Denise", "Shines", 34, 2)).ToList();
+            employees.ForEach(y => Console.WriteLine(y.FullName));                     
         }
 
         #region CreateEmployeesMethod
